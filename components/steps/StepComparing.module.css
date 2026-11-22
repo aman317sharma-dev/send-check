@@ -1,0 +1,58 @@
+.title {
+  font-family: var(--font-voice);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 20px 24px;
+}
+
+.raised {
+  border-color: var(--slate);
+}
+
+.raisedNote {
+  font-family: var(--font-interface);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--slate-soft);
+  margin-top: 4px;
+}
+
+.facts {
+  list-style: none;
+  margin: 16px 0 20px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.facts li {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 22px;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}

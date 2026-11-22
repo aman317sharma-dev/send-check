@@ -5,23 +5,34 @@ export interface RunTagProps {
   time?: string;
 }
 
-function RunTag({ kind, time }: RunTagProps) {
+function RunTag({ kind, time, onRunLive }: RunTagProps & { onRunLive: () => void }) {
   if (kind === "live") {
     return <span className={styles.runTag}>Live run</span>;
   }
   return (
     <span className={styles.runTag}>
-      Saved run {time ? `from ${time}` : ""} <button className="btn-link">Run it again live</button>
+      Saved run {time ? `from ${time}` : ""}{" "}
+      <button className="btn-link" onClick={onRunLive}>
+        Run it again live
+      </button>
     </span>
   );
 }
 
-export default function TopBar({ onOpenSourceData, runTag }: { onOpenSourceData: () => void; runTag: RunTagProps }) {
+export default function TopBar({
+  onOpenSourceData,
+  onRunLive,
+  runTag,
+}: {
+  onOpenSourceData: () => void;
+  onRunLive: () => void;
+  runTag: RunTagProps;
+}) {
   return (
     <header className={styles.bar}>
       <span className={styles.wordmark}>Send Check</span>
       <div className={styles.right}>
-        <RunTag {...runTag} />
+        <RunTag {...runTag} onRunLive={onRunLive} />
         <button className="btn btn-secondary" onClick={onOpenSourceData}>
           Source data
         </button>

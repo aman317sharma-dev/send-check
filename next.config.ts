@@ -4,10 +4,10 @@ import type { NextConfig } from "next";
 // (win32/arm64, blocked by an Application Control policy), so this project
 // runs on webpack instead (`next dev --webpack` / `next build --webpack`).
 // Tailwind runs through the standard @tailwindcss/postcss plugin
-// (postcss.config.mjs) rather than the turbopack-only loader.
-const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
-};
+// (postcss.config.mjs) rather than the turbopack-only loader. Plain
+// defaults otherwise — the experimental cacheComponents/partialPrefetching
+// flags added friction (Suspense-boundary requirements, a route-config
+// conflict) with no benefit for this project's scope.
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

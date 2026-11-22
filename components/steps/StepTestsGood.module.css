@@ -1,0 +1,77 @@
+.title {
+  font-family: var(--font-voice);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+.stripWrap {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 24px 16px 8px 16px;
+  margin-bottom: 32px;
+}
+
+.list {
+  list-style: none;
+  margin: 0 0 24px 0;
+  padding: 0;
+}
+
+.row {
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.rowHead {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 32px;
+}
+
+.name {
+  flex: 1 1 180px;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.reasons {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reasons p {
+  font-size: 14px;
+  color: var(--slate-soft);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-interface);
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.badgeGood {
+  color: var(--ready-fg);
+}
+
+.badgeBad {
+  color: var(--donotsend-fg);
+}
+
+.summary {
+  font-size: 16px;
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}

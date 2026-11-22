@@ -23,10 +23,14 @@ import type {
   AnswerBlock,
   CannotDoCard,
   CheckId,
+  CheckoutTestSummary,
   Finding,
   NewTestRequest,
+  ProductCheckoutStatus,
   RunResult,
 } from "@/types/result";
+import type { ResolvedCheckoutTest } from "@/lib/checks/types";
+import type { CheckoutTest } from "@/lib/sources/types";
 
 export interface RunAgentOptions {
   question?: string;
@@ -52,6 +56,35 @@ function collectAllowedTokens(checks: { expected: string; actual: string; note?:
     if (c.note) tokens.push(c.note);
   }
   return tokens;
+}
+
+function summarizeTest(test: CheckoutTest, usability?: { usable: boolean; reasons: string[] } | null): CheckoutTestSummary {
+  return {
+    observationId: test.observation_id,
+    checkedAt: test.checked_at,
+    priceBefore: test.price_before_code,
+    priceAfter: test.price_after_code,
+    usable: usability?.usable ?? true,
+    reasons: (usability?.reasons ?? []) as CheckoutTestSummary["reasons"],
+  };
+}
+
+function buildCheckoutByProduct(
+  checkoutByProduct: Record<string, ResolvedCheckoutTest>,
+  offer: { included_products: { product_id: string; name: string }[]; excluded_products: { product_id: string; name: string }[] },
+): ProductCheckoutStatus[] {
+  const products = [...offer.included_products, ...offer.excluded_products];
+  return products.map((p) => {
+    const resolved = checkoutByProduct[p.product_id];
+    return {
+      productId: p.product_id,
+      productName: p.name,
+      initial: resolved?.initial ? summarizeTest(resolved.initial, resolved.initialUsability) : null,
+      chosen: resolved?.chosen ? summarizeTest(resolved.chosen, resolved.chosenUsability) : null,
+      newRequested: resolved?.newRequested ?? false,
+      newTest: resolved?.newTest ? summarizeTest(resolved.newTest, resolved.newUsability) : null,
+    };
+  });
 }
 
 function templateFindingBody(finding: Finding): string {
@@ -82,6 +115,7 @@ export async function runAgent(scenario: LoadedScenario, options: RunAgentOption
       checks: [],
       checksNotRun: [...ALL_CHECK_IDS],
       newTest: null,
+      checkoutByProduct: [],
       actions: [],
       cannotDo: [],
       shortOnTime: null,
@@ -230,6 +264,7 @@ export async function runAgent(scenario: LoadedScenario, options: RunAgentOption
     checks,
     checksNotRun,
     newTest,
+    checkoutByProduct: buildCheckoutByProduct(checkoutByProduct, ctx.offer),
     actions,
     cannotDo,
     shortOnTime,

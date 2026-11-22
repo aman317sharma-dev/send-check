@@ -110,6 +110,27 @@ export interface CannotDoCard {
   body: string;
 }
 
+export interface CheckoutTestSummary {
+  observationId: string;
+  checkedAt: string;
+  priceBefore: number;
+  priceAfter: number;
+  usable: boolean;
+  reasons: ("before_code_live" | "before_last_modified" | "too_old")[];
+}
+
+// One per known product — lets steps 2/3/4 render the real checkout-test
+// picture (taken time, before/after price, usable or not, replaced or not)
+// without recomputing anything the agent loop already resolved.
+export interface ProductCheckoutStatus {
+  productId: string;
+  productName: string;
+  initial: CheckoutTestSummary | null;
+  chosen: CheckoutTestSummary | null;
+  newRequested: boolean;
+  newTest: CheckoutTestSummary | null;
+}
+
 export interface NewTestRequest {
   productId: string;
   requested: boolean;
@@ -132,6 +153,7 @@ export interface RunResult {
   checks: CheckResult[];
   checksNotRun: CheckId[];
   newTest: NewTestRequest | null;
+  checkoutByProduct: ProductCheckoutStatus[];
   actions: ActionCard[];
   cannotDo: CannotDoCard[];
   shortOnTime: { urgent: boolean; minutesLeft: number } | null;

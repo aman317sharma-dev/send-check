@@ -19,6 +19,33 @@ function proofTime(check: CheckResult): string | null {
   return ref ? formatEtWeekdayTime(ref.time) : null;
 }
 
+// Scenario 3's special treatment (brief file 02 §4 step 5): the approved
+// code and the email's code shown one above the other, character-aligned,
+// with the differing character underlined — so the single wrong character
+// (a capital O standing in for a zero) is unmistakable at a glance.
+function CodeDiff({ expected, actual }: { expected: string; actual: string }) {
+  const length = Math.max(expected.length, actual.length);
+  const chars = Array.from({ length }, (_, i) => expected[i] !== actual[i]);
+  return (
+    <div className={styles.codeDiff}>
+      <div className="fact">
+        {Array.from(expected).map((ch, i) => (
+          <span key={i} className={chars[i] ? styles.diffChar : undefined}>
+            {ch}
+          </span>
+        ))}
+      </div>
+      <div className="fact">
+        {Array.from(actual).map((ch, i) => (
+          <span key={i} className={chars[i] ? styles.diffChar : undefined}>
+            {ch}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CheckRow({ check }: { check: CheckResult }) {
   const [open, setOpen] = useState(check.result === "fix");
   const failed = check.result === "fix";
@@ -38,16 +65,20 @@ function CheckRow({ check }: { check: CheckResult }) {
 
       {open && (
         <div className={styles.detail}>
-          <dl>
-            <div>
-              <dt className="label">Approved</dt>
-              <dd className="fact">{check.expected}</dd>
-            </div>
-            <div>
-              <dt className="label">Found</dt>
-              <dd className={`fact ${failed ? styles.actualFail : ""}`}>{check.actual}</dd>
-            </div>
-          </dl>
+          {check.id === "EM-3" && failed ? (
+            <CodeDiff expected={check.expected} actual={check.actual} />
+          ) : (
+            <dl>
+              <div>
+                <dt className="label">Approved</dt>
+                <dd className="fact">{check.expected}</dd>
+              </div>
+              <div>
+                <dt className="label">Found</dt>
+                <dd className={`fact ${failed ? styles.actualFail : ""}`}>{check.actual}</dd>
+              </div>
+            </dl>
+          )}
           {check.perUnitGap !== undefined && (
             <p className={styles.gap}>${check.perUnitGap.toFixed(2)} less on every one sold.</p>
           )}

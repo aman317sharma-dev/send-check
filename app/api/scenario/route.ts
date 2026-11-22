@@ -6,8 +6,9 @@ import { createDefaultAiClients } from "@/lib/ai/narrate";
 import { createFakeAiClient } from "@/lib/ai/fake-client";
 import { runStore, rateLimiter } from "@/lib/store/memory-store";
 
-export const dynamic = "force-dynamic";
-
+// No explicit route-segment config: reading cookies/searchParams already
+// makes this dynamic, and an explicit "force-dynamic" conflicts with
+// next.config.ts's cacheComponents.
 const RATE_LIMIT = 5;
 const VISITOR_COOKIE = "scv_id";
 
@@ -54,6 +55,18 @@ export async function GET(request: NextRequest) {
   visitorId = visitorId ?? randomUUID();
 
   const scenario = loadScenarioFromDisk(file);
+  const scenarioPayload = {
+    title: scenario.file.title,
+    description: scenario.file.description,
+    defaultQuestion: scenario.file.default_question,
+    offer: scenario.file.approved_offer,
+    shopify: scenario.file.shopify_discount,
+    email: scenario.file.klaviyo_email,
+    checkoutTests: scenario.file.checkout_tests,
+    newTestsAvailable: scenario.file.new_tests_available_on_request,
+    settings: scenario.file.settings,
+    simulatedOutcomes: scenario.file.simulated_outcomes ?? {},
+  };
   const defaultQuestion = scenario.file.default_question.trim().toLowerCase();
   const question = questionParam?.trim() ?? scenario.file.default_question;
   const isStandardQuestion = question.trim().toLowerCase() === defaultQuestion;
@@ -83,6 +96,7 @@ export async function GET(request: NextRequest) {
         return response({
           ok: true,
           result: saved.result,
+          scenario: scenarioPayload,
           cacheHit: true,
           computedAt: saved.computedAt,
           rateLimit: { remaining: rateLimitRemaining, limit: RATE_LIMIT },
@@ -100,6 +114,7 @@ export async function GET(request: NextRequest) {
     return response({
       ok: true,
       result,
+      scenario: scenarioPayload,
       cacheHit: false,
       computedAt,
       rateLimit: { remaining: rateLimitRemaining, limit: RATE_LIMIT },

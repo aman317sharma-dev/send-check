@@ -95,6 +95,24 @@
   padding: 4px 4px 20px 4px;
 }
 
+.codeDiff {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+}
+
+.diffChar {
+  text-decoration: underline;
+  text-decoration-color: var(--donotsend-fg);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  color: var(--donotsend-fg);
+  font-weight: 600;
+}
+
 .detail dl {
   display: flex;
   flex-direction: column;

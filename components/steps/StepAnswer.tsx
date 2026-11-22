@@ -67,13 +67,55 @@ export default function StepAnswer({
   answer,
   findings,
   onSeeChecks,
+  questionKind = "standard",
+  outOfScopeReason,
+  onAskStandard,
 }: {
-  answer: AnswerBlock;
+  answer: AnswerBlock | null;
   findings: Finding[];
   onSeeChecks: () => void;
+  questionKind?: "standard" | "narrower" | "out_of_scope" | "refused_action";
+  outOfScopeReason?: string;
+  onAskStandard?: () => void;
 }) {
   const fixFindings = findings.filter((f) => f.class === "fix_before_sending");
   const noteFindings = findings.filter((f) => f.class === "note");
+
+  // Brief file 02 §4 step 6: a narrower question gets no answer block, and
+  // a question outside the four sources gets a plain "I can't see that."
+  if (!answer) {
+    if (questionKind === "narrower") {
+      return (
+        <div>
+          <h2 className={styles.smallHeading}>What I found</h2>
+          <p className={styles.narrowNote}>This wasn&apos;t the full check. Ask &quot;Are we ready to send?&quot; for the full answer.</p>
+          {(fixFindings.length > 0 || noteFindings.length > 0) && (
+            <div className={styles.cardStack}>
+              {fixFindings.map((f) => (
+                <FindingCard key={f.checkId} finding={f} />
+              ))}
+              {noteFindings.map((f) => (
+                <WorthKnowingCard key={f.checkId} finding={f} />
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+    return (
+      <div>
+        <h2 className={styles.smallHeading}>I can&apos;t see that</h2>
+        <p className={styles.narrowNote}>
+          {outOfScopeReason ?? "I can check the approved offer, the Shopify setup, the email draft and the checkout tests."}
+        </p>
+        {onAskStandard && (
+          <button className="btn btn-primary" onClick={onAskStandard}>
+            Ask the standard question
+          </button>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div>

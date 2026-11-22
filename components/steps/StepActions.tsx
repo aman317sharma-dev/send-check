@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import type { ActionCard as ActionCardType, CannotDoCard } from "@/types/result";
 import TimeStrip, { type TimeStripDot } from "@/components/TimeStrip";
 import styles from "./StepActions.module.css";
 
-type ActionStatus = "pending" | "approved" | "declined";
+export type ActionStatus = "pending" | "approved" | "declined";
 
-function ActionCard({ action }: { action: ActionCardType }) {
-  const [status, setStatus] = useState<ActionStatus>("pending");
-
+// Lifted to the app shell (not local state) so step 8 can react to what
+// the reviewer approved or declined here.
+function ActionCard({
+  action,
+  status,
+  onChange,
+}: {
+  action: ActionCardType;
+  status: ActionStatus;
+  onChange: (status: ActionStatus) => void;
+}) {
   return (
     <div className={`${styles.card} ${status === "declined" ? styles.declined : ""}`}>
       <div className={styles.cardHead}>
@@ -40,10 +47,10 @@ function ActionCard({ action }: { action: ActionCardType }) {
 
       {status === "pending" && (
         <div className={styles.buttons}>
-          <button className="btn btn-primary" onClick={() => setStatus("approved")}>
+          <button className="btn btn-primary" onClick={() => onChange("approved")}>
             Approve
           </button>
-          <button className="btn btn-secondary" onClick={() => setStatus("declined")}>
+          <button className="btn btn-secondary" onClick={() => onChange("declined")}>
             Decline
           </button>
         </div>
@@ -55,7 +62,7 @@ function ActionCard({ action }: { action: ActionCardType }) {
           </svg>
           <span>Approved</span>
           <span className={styles.simulated}>Simulated</span>
-          <button className="btn-link" onClick={() => setStatus("pending")}>
+          <button className="btn-link" onClick={() => onChange("pending")}>
             Change
           </button>
         </div>
@@ -63,7 +70,7 @@ function ActionCard({ action }: { action: ActionCardType }) {
       {status === "declined" && (
         <div className={styles.doneRow}>
           <span>Declined. Nothing changes.</span>
-          <button className="btn-link" onClick={() => setStatus("pending")}>
+          <button className="btn-link" onClick={() => onChange("pending")}>
             Change
           </button>
         </div>
@@ -77,11 +84,15 @@ export default function StepActions({
   cannotDo,
   shortOnTime,
   timeStrip,
+  actionStatuses,
+  onActionStatusChange,
 }: {
   actions: ActionCardType[];
   cannotDo: CannotDoCard[];
   shortOnTime: { urgent: boolean; minutesLeft: number } | null;
   timeStrip: { saleStart: string; emailSend: string; now: string; dots: TimeStripDot[] } | null;
+  actionStatuses: Record<string, ActionStatus>;
+  onActionStatusChange: (actionId: string, status: ActionStatus) => void;
 }) {
   return (
     <div>
@@ -112,7 +123,12 @@ export default function StepActions({
       ) : (
         <div className={styles.cardStack}>
           {actions.map((a) => (
-            <ActionCard key={a.id} action={a} />
+            <ActionCard
+              key={a.id}
+              action={a}
+              status={actionStatuses[a.id] ?? "pending"}
+              onChange={(status) => onActionStatusChange(a.id, status)}
+            />
           ))}
           {cannotDo.map((c, i) => (
             <div key={i} className={styles.cannotDo}>

@@ -1,20 +1,9 @@
-import { loadScenarioFromDisk } from "@/lib/sources/load-scenario";
-import { getScenarioResult } from "@/lib/agent/result-cache";
-import Walkthrough from "@/components/Walkthrough";
+import AppShell from "@/components/AppShell";
 
-// Stage 3a look-and-feel check: the frame, the scenario tabs, and steps 5-7
-// of Scenario 2, built to files 02 and 03. Steps 1-4 and 8, and the other
-// four scenarios, come in stage 3b.
-export default async function Home() {
-  const fileName = "s2_a_price_is_wrong.json";
-  const scenario = loadScenarioFromDisk(fileName);
-  const result = await getScenarioResult(fileName);
-
-  return (
-    <Walkthrough
-      result={result}
-      saleStart={scenario.file.shopify_discount.starts_at}
-      emailSend={scenario.file.klaviyo_email.scheduled_send_at}
-    />
-  );
+// The whole reviewer experience is one page (brief file 02 §0: "no sign-in,
+// no landing page"). AppShell is a client component — it fetches each
+// scenario's result from /api/scenario itself, which is what lets the
+// loading state in file 02 §8 actually show.
+export default function Home() {
+  return <AppShell />;
 }
