@@ -95,8 +95,6 @@ export default function StepChecks({ checks, checksNotRun }: { checks: CheckResu
 
   return (
     <div>
-      <h2 className={styles.title}>The checks</h2>
-
       <label className={styles.toggle}>
         <input type="checkbox" checked={onlyFailed} onChange={(e) => setOnlyFailed(e.target.checked)} />
         Show only what failed

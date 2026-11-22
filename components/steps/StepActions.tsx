@@ -96,8 +96,6 @@ export default function StepActions({
 }) {
   return (
     <div>
-      <h2 className={styles.title}>What I&apos;d do</h2>
-
       {shortOnTime?.urgent && (
         <div className={styles.banner}>
           <span className={styles.bannerTitle}>Short on time</span>
@@ -138,8 +136,6 @@ export default function StepActions({
           ))}
         </div>
       )}
-
-      <p className={styles.footer}>Sending the email is your decision. I&apos;ll never do it.</p>
     </div>
   );
 }

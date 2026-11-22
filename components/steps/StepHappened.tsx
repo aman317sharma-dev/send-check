@@ -80,8 +80,6 @@ export default function StepHappened({
 
   return (
     <div>
-      <h2 className={styles.title}>What happened</h2>
-
       <ul className={styles.didList}>
         {didLines.map((d, i) => (
           <li key={i}>

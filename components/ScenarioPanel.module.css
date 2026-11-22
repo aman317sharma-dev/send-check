@@ -1,0 +1,30 @@
+.panel {
+  padding: 40px 48px;
+}
+
+.questionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.question {
+  font-family: var(--font-voice);
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--ink);
+}
+
+.checksDetails {
+  margin: 24px 0;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.checksDetails summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--slate);
+}

@@ -216,19 +216,29 @@ export async function runAgent(scenario: LoadedScenario, options: RunAgentOption
     const asOf = computeAsOf(ctx);
     const goodUntil = computeGoodUntil(ctx);
     const whyTemplateFallback = buildWhySentence(state, findings);
+    const fixFindingsOnly = findings.filter((f) => f.class === "fix_before_sending");
 
-    const narratedWhy = await narrateWithFallback(ai.primary, ai.fallback, {
-      job: "why_sentence",
-      context: {
-        state,
-        findings: findings.map((f) => ({ title: f.title, expected: f.expected, actual: f.actual })),
-      },
-      allowedTokens,
-      templateFallback: whyTemplateFallback,
-    });
-    if (narratedWhy.usedTemplate) narrationUsedTemplate = true;
+    // When the answer is "ready," there is nothing to explain beyond the
+    // template — skip the AI call rather than risk it describing a
+    // "worth knowing" note as something that needed fixing (a real case we
+    // saw: the AI conflated the EM-6 link note with a fix-before-sending
+    // problem in scenario 1, which has none).
+    let why = whyTemplateFallback;
+    if (state !== "ready") {
+      const narratedWhy = await narrateWithFallback(ai.primary, ai.fallback, {
+        job: "why_sentence",
+        context: {
+          state,
+          findings: fixFindingsOnly.map((f) => ({ title: f.title, expected: f.expected, actual: f.actual })),
+        },
+        allowedTokens,
+        templateFallback: whyTemplateFallback,
+      });
+      why = narratedWhy.text;
+      if (narratedWhy.usedTemplate) narrationUsedTemplate = true;
+    }
 
-    answer = { state, asOf, goodUntil: goodUntil ?? undefined, why: narratedWhy.text };
+    answer = { state, asOf, goodUntil: goodUntil ?? undefined, why };
 
     const built = buildActions(
       findings,

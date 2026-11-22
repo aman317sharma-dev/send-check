@@ -5,16 +5,13 @@
 }
 
 .walkthrough {
-  display: flex;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   background: var(--card);
 }
 
-.stage {
-  flex: 1 1 auto;
-  min-width: 0;
-  padding: 48px 48px 0;
+.stageFull {
+  padding: 40px 48px;
 }
 
 .offlineBanner {
