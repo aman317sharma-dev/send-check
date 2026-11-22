@@ -1,0 +1,174 @@
+.answerBlock {
+  position: relative;
+  padding: 32px 36px 28px 32px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  border-left: 6px solid var(--slate);
+}
+
+.ready {
+  background: var(--ready-bg);
+  border-left-color: var(--ready-fg);
+}
+.ready .answerWord {
+  color: var(--ready-fg);
+}
+
+.doNotSend {
+  background: var(--donotsend-bg);
+  border-left-color: var(--donotsend-fg);
+}
+.doNotSend .answerWord {
+  color: var(--donotsend-fg);
+}
+
+.cantConfirm {
+  background: var(--cantconfirm-bg);
+  border-left-color: var(--cantconfirm-fg);
+}
+.cantConfirm .answerWord {
+  color: var(--cantconfirm-fg);
+}
+
+.answerWord {
+  font-family: var(--font-voice);
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.why {
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  max-width: 60ch;
+}
+
+.times {
+  display: flex;
+  gap: 24px;
+}
+
+.section {
+  margin-bottom: 36px;
+}
+
+.cardStack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.findingCard {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 20px 24px;
+  border-left: 1px solid var(--line);
+}
+
+.fixBar {
+  border-left: 4px solid var(--donotsend-fg);
+}
+
+.findingTitle {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.findingBody {
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 12px;
+  max-width: 68ch;
+}
+
+.findingValues {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.arrow {
+  font-size: 12px;
+  color: var(--slate-soft);
+}
+
+.gap {
+  font-size: 14px;
+  color: var(--donotsend-fg);
+  margin-bottom: 12px;
+}
+
+.findingFooter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-family: var(--font-facts);
+  font-size: 11px;
+  color: var(--slate-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.noteCard {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.noteHead {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--worthknowing-fg);
+  font-weight: 500;
+}
+
+.noteHead .findingBody {
+  margin: 0;
+}
+
+.chevron {
+  color: var(--slate-soft);
+}
+
+.seeChecks {
+  display: inline-block;
+  margin-top: 8px;
+}

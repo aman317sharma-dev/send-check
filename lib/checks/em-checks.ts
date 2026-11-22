@@ -3,7 +3,7 @@
 // the email's wording (ctx.emailClaims) and compare them with plain code.
 // EM-3 is the one exception — see the comment above checkEM3.
 
-import { formatEtWeekdayTime, etWeekday, etTime24 } from "@/lib/format/time";
+import { formatEtWeekdayTime, etWeekday, etTime24, etWeekdayShort, shortWeekday, formatTime12hFrom24 } from "@/lib/format/time";
 import type { CheckContext } from "@/lib/checks/types";
 import type { CheckResult, SourceRef } from "@/types/result";
 
@@ -129,9 +129,12 @@ export function checkEM3(ctx: CheckContext): CheckResult {
 
 export function checkEM4(ctx: CheckContext): CheckResult {
   const claims = ctx.emailClaims;
+  // Compared on the full weekday name and 24h time (unambiguous); displayed
+  // in the house style — short weekday, 12h time (brief file 03 §3: times
+  // are never shown in 24-hour form).
   const expectedWeekday = etWeekday(ctx.offer.ends_at);
   const expectedTime = etTime24(ctx.offer.ends_at);
-  const expected = `${expectedWeekday} ${expectedTime}`;
+  const expected = `${etWeekdayShort(ctx.offer.ends_at)} ${formatTime12hFrom24(expectedTime)}`;
 
   if (claims.deadlineWeekday === null || claims.deadlineTime24 === null) {
     return {
@@ -152,7 +155,7 @@ export function checkEM4(ctx: CheckContext): CheckResult {
     name: "Email's deadline matches the offer",
     result: pass ? "pass" : "fix",
     expected,
-    actual: `${claims.deadlineWeekday} ${claims.deadlineTime24}`,
+    actual: `${shortWeekday(claims.deadlineWeekday)} ${formatTime12hFrom24(claims.deadlineTime24)}`,
     proofRefs: [emailRef(ctx, "body_text"), offerRef(ctx, "ends_at")],
   };
 }

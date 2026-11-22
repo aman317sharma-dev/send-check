@@ -1,0 +1,25 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-interface);
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.pass {
+  color: var(--ready-fg);
+}
+
+.pass_with_note {
+  color: var(--worthknowing-fg);
+}
+
+.fix {
+  color: var(--donotsend-fg);
+}
+
+.cant_confirm {
+  color: var(--cantconfirm-fg);
+}

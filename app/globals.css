@@ -1,26 +1,183 @@
 @import "tailwindcss";
 
+/* Send Check design tokens — brief file 03. A calm editorial desk, set in
+   linen: cool slate for structure, warm sand for the page. One fixed
+   palette, no dark mode (the brief doesn't ask for one). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f4efe6;
+  --card: #fbf8f2;
+  --ink: #1f252b;
+  --slate: #3c4a57;
+  --slate-soft: #6b7885;
+  --line: #d9d1c3;
+  --sand: #c9b48f;
+
+  --ready-fg: #4f7a5a;
+  --ready-bg: #e3ece1;
+  --donotsend-fg: #a2412f;
+  --donotsend-bg: #f3ddd6;
+  --cantconfirm-fg: #a8741a;
+  --cantconfirm-bg: #f3e5c7;
+  --worthknowing-fg: #4b6a88;
+  --worthknowing-bg: #e1e8ee;
+
+  --font-voice: var(--font-newsreader), Georgia, serif;
+  --font-interface: var(--font-hanken), system-ui, sans-serif;
+  --font-facts: var(--font-plex-mono), "SF Mono", monospace;
+
+  --unit: 8px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-interface);
+  font-size: 16px;
+  line-height: 1.625;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* A faint paper grain over the page background only — never on cards
+   (file 03 §2). An inline SVG turbulence filter, no network request. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+#app-root {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Visible focus everywhere — a 2px slate ring, 2px offset (file 02 §10). */
+:focus-visible {
+  outline: 2px solid var(--slate);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Shared primitives used across components */
+
+.label {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-soft);
+}
+
+.fact {
+  font-family: var(--font-facts);
+  font-size: 14px;
+  line-height: 22px;
+  font-feature-settings: "tnum" 1;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 4px;
+  font-family: var(--font-interface);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 120ms ease-out;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.btn-primary {
+  background: var(--slate);
+  color: var(--card);
+}
+
+.btn-primary:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--slate);
+  border-color: var(--slate);
+}
+
+.btn-secondary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--slate) 6%, transparent);
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  height: auto;
+  font-family: var(--font-interface);
+  font-size: 14px;
+  color: var(--slate-soft);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+}
+
+.btn-link:hover {
+  color: var(--slate);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

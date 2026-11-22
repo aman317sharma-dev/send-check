@@ -1,0 +1,74 @@
+.rail {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 48px 0;
+}
+
+.rail ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 24px;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+
+.item:disabled {
+  cursor: default;
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.number {
+  font-family: var(--font-facts);
+  font-size: 12px;
+  color: var(--slate-soft);
+}
+
+.name {
+  font-family: var(--font-interface);
+  font-size: 14px;
+  color: var(--slate-soft);
+}
+
+.current {
+  border-left-color: var(--slate);
+}
+
+.current .name {
+  color: var(--slate);
+  font-weight: 600;
+}
+
+.current .number {
+  color: var(--slate);
+  font-weight: 600;
+}
+
+.done .name {
+  color: var(--ink);
+}
+
+.upcoming .name,
+.upcoming .number {
+  color: var(--slate-soft);
+  opacity: 0.6;
+}

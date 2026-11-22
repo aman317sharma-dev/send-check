@@ -1,0 +1,136 @@
+.title {
+  font-family: var(--font-voice);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+.banner {
+  background: var(--donotsend-bg);
+  border: 1px solid var(--donotsend-fg);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+
+.bannerTitle {
+  font-weight: 600;
+  color: var(--donotsend-fg);
+  margin-right: 16px;
+}
+
+.stripWrap {
+  margin-top: 12px;
+}
+
+.nothing {
+  font-size: 16px;
+  color: var(--slate-soft);
+  margin-bottom: 24px;
+}
+
+.cardStack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 20px 24px;
+}
+
+.declined {
+  opacity: 0.6;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.cardTitle {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.urgent {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--donotsend-fg);
+  border: 1px solid var(--donotsend-fg);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.touches,
+.reversible {
+  font-size: 14px;
+  color: var(--slate-soft);
+  margin-bottom: 4px;
+}
+
+.draft {
+  margin: 14px 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 14px 16px;
+}
+
+.beforeAfter {
+  display: flex;
+  gap: 32px;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.doneRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.simulated {
+  font-size: 11px;
+  border: 1px dashed var(--slate-soft);
+  border-radius: 999px;
+  padding: 2px 8px;
+  color: var(--slate-soft);
+}
+
+.cannotDo {
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  padding: 18px 22px;
+}
+
+.cannotDoTitle {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.footer {
+  font-size: 14px;
+  color: var(--slate-soft);
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}

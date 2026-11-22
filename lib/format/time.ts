@@ -59,6 +59,30 @@ export function etWeekday(iso: string): string {
   }).format(toDate(iso));
 }
 
+// "Sun", "Fri" — the house style for displayed dates (brief file 02: "Fri
+// 9:00 am to Sun 11:59 pm ET"), never the full weekday name.
+export function etWeekdayShort(iso: string): string {
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    weekday: "short",
+  }).format(toDate(iso));
+}
+
+export function shortWeekday(fullName: string): string {
+  return fullName.slice(0, 3);
+}
+
+// "23:59" -> "11:59 pm", "09:00" -> "9:00 am" — the house style is always
+// 12-hour with a lowercase am/pm, never 24-hour (file 03 §3).
+export function formatTime12hFrom24(time24: string): string {
+  const [hourStr, minuteStr] = time24.split(":");
+  let hour = parseInt(hourStr, 10);
+  const meridiem = hour >= 12 ? "pm" : "am";
+  hour = hour % 12;
+  if (hour === 0) hour = 12;
+  return `${hour}:${minuteStr} ${meridiem}`;
+}
+
 export function etTime24(iso: string): string {
   // "23:59", "09:00" — for comparing a stated deadline time to an offer's
   // end time regardless of calendar date (the placeholder year is never

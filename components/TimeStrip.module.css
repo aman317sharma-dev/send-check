@@ -1,0 +1,36 @@
+.wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  min-width: 480px;
+  display: block;
+}
+
+.tickLabel {
+  font-family: var(--font-facts);
+  font-size: 10px;
+  fill: var(--slate-soft);
+}
+
+.markerLabel {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  font-size: 11px;
+  fill: var(--slate);
+}
+
+.bracketLabel {
+  font-family: var(--font-facts);
+  font-size: 11px;
+  fill: var(--donotsend-fg);
+}
+
+.dotLabel {
+  font-family: var(--font-interface);
+  font-weight: 700;
+  font-size: 9px;
+}
