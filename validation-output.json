@@ -1,0 +1,791 @@
+[
+  {
+    "scenarioId": "s1_everything_lines_up",
+    "title": "Everything lines up",
+    "question": "Are we ready to send?",
+    "expectedAnswer": "ready",
+    "actualAnswer": "ready",
+    "matchesExpected": true,
+    "asOf": "2026-12-04T09:10:00-05:00",
+    "goodUntil": "2026-12-04T14:20:00.000Z",
+    "failingChecks": [],
+    "findings": [
+      {
+        "checkId": "EM-6",
+        "class": "note",
+        "title": "The main link opens only Slate Cotton Sheet Set. The offer covers two products.",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set",
+        "owner": "marketing",
+        "causeUnknown": false,
+        "basedOn": [
+          "klaviyo_email @ Fri 9:10 am",
+          "approved_offer @ Fri 9:10 am"
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "id": "SH-1",
+        "result": "pass",
+        "expected": "WEEKEND20 · active",
+        "actual": "WEEKEND20 · active"
+      },
+      {
+        "id": "SH-2",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "SH-3",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-4",
+        "result": "pass",
+        "expected": "Pillowcase Set not covered",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am",
+        "actual": "Fri 9:00 am"
+      },
+      {
+        "id": "SH-6",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-1",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "EM-2",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate and Sand Cotton Sheet Sets"
+      },
+      {
+        "id": "EM-3",
+        "result": "pass",
+        "expected": "WEEKEND20",
+        "actual": "WEEKEND20"
+      },
+      {
+        "id": "EM-4",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am to Sun 11:59 pm",
+        "actual": "Fri 9:15 am"
+      },
+      {
+        "id": "EM-6",
+        "result": "pass_with_note",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set"
+      },
+      {
+        "id": "CO-1",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:05 am. Still good."
+      },
+      {
+        "id": "CO-2",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:06 am. Still good."
+      },
+      {
+        "id": "CO-3",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:07 am. Still good."
+      },
+      {
+        "id": "CO-4",
+        "result": "pass",
+        "expected": "$80.00",
+        "actual": "$80.00"
+      },
+      {
+        "id": "CO-5",
+        "result": "pass",
+        "expected": "$96.00",
+        "actual": "$96.00"
+      },
+      {
+        "id": "CO-6",
+        "result": "pass",
+        "expected": "$40.00",
+        "actual": "$40.00"
+      }
+    ],
+    "actions": []
+  },
+  {
+    "scenarioId": "s2_a_price_is_wrong",
+    "title": "A price is wrong",
+    "question": "Are we ready to send?",
+    "expectedAnswer": "do_not_send",
+    "actualAnswer": "do_not_send",
+    "matchesExpected": true,
+    "asOf": "2026-12-04T09:11:00-05:00",
+    "goodUntil": "2026-12-04T14:20:00.000Z",
+    "failingChecks": [
+      "CO-6"
+    ],
+    "findings": [
+      {
+        "checkId": "EM-6",
+        "class": "note",
+        "title": "The main link opens only Slate Cotton Sheet Set. The offer covers two products.",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set",
+        "owner": "marketing",
+        "causeUnknown": false,
+        "basedOn": [
+          "klaviyo_email @ Fri 9:10 am",
+          "approved_offer @ Fri 9:10 am"
+        ]
+      },
+      {
+        "checkId": "CO-6",
+        "class": "fix_before_sending",
+        "title": "The Pillowcase Set is getting the discount.",
+        "expected": "$40.00",
+        "actual": "$32.00",
+        "perUnitGap": 8,
+        "owner": "store_team",
+        "causeUnknown": true,
+        "basedOn": [
+          "checkout_test @ Fri 9:11 am"
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "id": "SH-1",
+        "result": "pass",
+        "expected": "WEEKEND20 · active",
+        "actual": "WEEKEND20 · active"
+      },
+      {
+        "id": "SH-2",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "SH-3",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-4",
+        "result": "pass",
+        "expected": "Pillowcase Set not covered",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am",
+        "actual": "Fri 9:00 am"
+      },
+      {
+        "id": "SH-6",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-1",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "EM-2",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate and Sand Cotton Sheet Sets"
+      },
+      {
+        "id": "EM-3",
+        "result": "pass",
+        "expected": "WEEKEND20",
+        "actual": "WEEKEND20"
+      },
+      {
+        "id": "EM-4",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am to Sun 11:59 pm",
+        "actual": "Fri 9:15 am"
+      },
+      {
+        "id": "EM-6",
+        "result": "pass_with_note",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set"
+      },
+      {
+        "id": "CO-1",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:05 am. Still good."
+      },
+      {
+        "id": "CO-2",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:06 am. Still good."
+      },
+      {
+        "id": "CO-3",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:11 am. Still good."
+      },
+      {
+        "id": "CO-4",
+        "result": "pass",
+        "expected": "$80.00",
+        "actual": "$80.00"
+      },
+      {
+        "id": "CO-5",
+        "result": "pass",
+        "expected": "$96.00",
+        "actual": "$96.00"
+      },
+      {
+        "id": "CO-6",
+        "result": "fix",
+        "expected": "$40.00",
+        "actual": "$32.00"
+      }
+    ],
+    "actions": [
+      {
+        "kind": "pause_email",
+        "title": "Pause the Fri 9:15 am email",
+        "urgent": true
+      },
+      {
+        "kind": "message_store_team",
+        "title": "Message the store team",
+        "urgent": false
+      }
+    ]
+  },
+  {
+    "scenarioId": "s3_typo_in_the_code",
+    "title": "A typo in the code",
+    "question": "Are we ready to send?",
+    "expectedAnswer": "do_not_send",
+    "actualAnswer": "do_not_send",
+    "matchesExpected": true,
+    "asOf": "2026-12-04T09:10:00-05:00",
+    "goodUntil": "2026-12-04T14:20:00.000Z",
+    "failingChecks": [
+      "EM-3"
+    ],
+    "findings": [
+      {
+        "checkId": "EM-3",
+        "class": "fix_before_sending",
+        "title": "The code in the email is wrong.",
+        "expected": "WEEKEND20",
+        "actual": "WEEKEND2O",
+        "owner": "marketing",
+        "causeUnknown": false,
+        "basedOn": [
+          "klaviyo_email @ Fri 9:10 am",
+          "approved_offer @ Fri 9:10 am"
+        ]
+      },
+      {
+        "checkId": "EM-6",
+        "class": "note",
+        "title": "The main link opens only Slate Cotton Sheet Set. The offer covers two products.",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set",
+        "owner": "marketing",
+        "causeUnknown": false,
+        "basedOn": [
+          "klaviyo_email @ Fri 9:10 am",
+          "approved_offer @ Fri 9:10 am"
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "id": "SH-1",
+        "result": "pass",
+        "expected": "WEEKEND20 · active",
+        "actual": "WEEKEND20 · active"
+      },
+      {
+        "id": "SH-2",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "SH-3",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-4",
+        "result": "pass",
+        "expected": "Pillowcase Set not covered",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am",
+        "actual": "Fri 9:00 am"
+      },
+      {
+        "id": "SH-6",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-1",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "EM-2",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate and Sand Cotton Sheet Sets"
+      },
+      {
+        "id": "EM-3",
+        "result": "fix",
+        "expected": "WEEKEND20",
+        "actual": "WEEKEND2O"
+      },
+      {
+        "id": "EM-4",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am to Sun 11:59 pm",
+        "actual": "Fri 9:15 am"
+      },
+      {
+        "id": "EM-6",
+        "result": "pass_with_note",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set"
+      },
+      {
+        "id": "CO-1",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:05 am. Still good."
+      },
+      {
+        "id": "CO-2",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:06 am. Still good."
+      },
+      {
+        "id": "CO-3",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:07 am. Still good."
+      },
+      {
+        "id": "CO-4",
+        "result": "pass",
+        "expected": "$80.00",
+        "actual": "$80.00"
+      },
+      {
+        "id": "CO-5",
+        "result": "pass",
+        "expected": "$96.00",
+        "actual": "$96.00"
+      },
+      {
+        "id": "CO-6",
+        "result": "pass",
+        "expected": "$40.00",
+        "actual": "$40.00"
+      }
+    ],
+    "actions": [
+      {
+        "kind": "pause_email",
+        "title": "Pause the Fri 9:15 am email",
+        "urgent": true
+      },
+      {
+        "kind": "correct_email_code",
+        "title": "Correct the code in the email draft",
+        "urgent": false
+      }
+    ]
+  },
+  {
+    "scenarioId": "s4_email_promises_too_much",
+    "title": "The email promises too much",
+    "question": "Are we ready to send?",
+    "expectedAnswer": "do_not_send",
+    "actualAnswer": "do_not_send",
+    "matchesExpected": true,
+    "asOf": "2026-12-04T09:10:00-05:00",
+    "goodUntil": "2026-12-04T14:20:00.000Z",
+    "failingChecks": [
+      "EM-2"
+    ],
+    "findings": [
+      {
+        "checkId": "EM-2",
+        "class": "fix_before_sending",
+        "title": "The email promises more than you approved.",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "all bedding",
+        "owner": "marketing",
+        "causeUnknown": false,
+        "basedOn": [
+          "klaviyo_email @ Fri 9:10 am",
+          "approved_offer @ Fri 9:10 am"
+        ]
+      },
+      {
+        "checkId": "EM-6",
+        "class": "note",
+        "title": "The main link opens only Slate Cotton Sheet Set. The offer covers two products.",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set",
+        "owner": "marketing",
+        "causeUnknown": false,
+        "basedOn": [
+          "klaviyo_email @ Fri 9:10 am",
+          "approved_offer @ Fri 9:10 am"
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "id": "SH-1",
+        "result": "pass",
+        "expected": "WEEKEND20 · active",
+        "actual": "WEEKEND20 · active"
+      },
+      {
+        "id": "SH-2",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "SH-3",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-4",
+        "result": "pass",
+        "expected": "Pillowcase Set not covered",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am",
+        "actual": "Fri 9:00 am"
+      },
+      {
+        "id": "SH-6",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-1",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "EM-2",
+        "result": "fix",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "all bedding"
+      },
+      {
+        "id": "EM-3",
+        "result": "pass",
+        "expected": "WEEKEND20",
+        "actual": "WEEKEND20"
+      },
+      {
+        "id": "EM-4",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am to Sun 11:59 pm",
+        "actual": "Fri 9:15 am"
+      },
+      {
+        "id": "EM-6",
+        "result": "pass_with_note",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set"
+      },
+      {
+        "id": "CO-1",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:05 am. Still good."
+      },
+      {
+        "id": "CO-2",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:06 am. Still good."
+      },
+      {
+        "id": "CO-3",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:07 am. Still good."
+      },
+      {
+        "id": "CO-4",
+        "result": "pass",
+        "expected": "$80.00",
+        "actual": "$80.00"
+      },
+      {
+        "id": "CO-5",
+        "result": "pass",
+        "expected": "$96.00",
+        "actual": "$96.00"
+      },
+      {
+        "id": "CO-6",
+        "result": "pass",
+        "expected": "$40.00",
+        "actual": "$40.00"
+      }
+    ],
+    "actions": [
+      {
+        "kind": "pause_email",
+        "title": "Pause the Fri 9:15 am email",
+        "urgent": true
+      },
+      {
+        "kind": "reword_email",
+        "title": "Reword the email",
+        "urgent": false
+      }
+    ]
+  },
+  {
+    "scenarioId": "s5_sale_ends_a_day_early",
+    "title": "The sale ends a day early",
+    "question": "Are we ready to send?",
+    "expectedAnswer": "do_not_send",
+    "actualAnswer": "do_not_send",
+    "matchesExpected": true,
+    "asOf": "2026-12-04T09:10:00-05:00",
+    "goodUntil": "2026-12-04T14:20:00.000Z",
+    "failingChecks": [
+      "SH-6"
+    ],
+    "findings": [
+      {
+        "checkId": "SH-6",
+        "class": "fix_before_sending",
+        "title": "The code switches off a day early.",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sat 11:59 pm",
+        "owner": "store_team",
+        "causeUnknown": false,
+        "basedOn": [
+          "shopify_discount @ Fri 9:10 am",
+          "approved_offer @ Fri 9:10 am"
+        ]
+      },
+      {
+        "checkId": "EM-6",
+        "class": "note",
+        "title": "The main link opens only Slate Cotton Sheet Set. The offer covers two products.",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set",
+        "owner": "marketing",
+        "causeUnknown": false,
+        "basedOn": [
+          "klaviyo_email @ Fri 9:10 am",
+          "approved_offer @ Fri 9:10 am"
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "id": "SH-1",
+        "result": "pass",
+        "expected": "WEEKEND20 · active",
+        "actual": "WEEKEND20 · active"
+      },
+      {
+        "id": "SH-2",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "SH-3",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-4",
+        "result": "pass",
+        "expected": "Pillowcase Set not covered",
+        "actual": "Slate Cotton Sheet Set and Sand Cotton Sheet Set"
+      },
+      {
+        "id": "SH-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am",
+        "actual": "Fri 9:00 am"
+      },
+      {
+        "id": "SH-6",
+        "result": "fix",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sat 11:59 pm"
+      },
+      {
+        "id": "EM-1",
+        "result": "pass",
+        "expected": "20%",
+        "actual": "20%"
+      },
+      {
+        "id": "EM-2",
+        "result": "pass",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate and Sand Cotton Sheet Sets"
+      },
+      {
+        "id": "EM-3",
+        "result": "pass",
+        "expected": "WEEKEND20",
+        "actual": "WEEKEND20"
+      },
+      {
+        "id": "EM-4",
+        "result": "pass",
+        "expected": "Sun 11:59 pm",
+        "actual": "Sun 11:59 pm"
+      },
+      {
+        "id": "EM-5",
+        "result": "pass",
+        "expected": "Fri 9:00 am to Sat 11:59 pm",
+        "actual": "Fri 9:15 am"
+      },
+      {
+        "id": "EM-6",
+        "result": "pass_with_note",
+        "expected": "Slate Cotton Sheet Set and Sand Cotton Sheet Set",
+        "actual": "Slate Cotton Sheet Set"
+      },
+      {
+        "id": "CO-1",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:05 am. Still good."
+      },
+      {
+        "id": "CO-2",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:06 am. Still good."
+      },
+      {
+        "id": "CO-3",
+        "result": "pass",
+        "expected": "a checkout test taken after the code went live and recent enough",
+        "actual": "Taken Fri 9:07 am. Still good."
+      },
+      {
+        "id": "CO-4",
+        "result": "pass",
+        "expected": "$80.00",
+        "actual": "$80.00"
+      },
+      {
+        "id": "CO-5",
+        "result": "pass",
+        "expected": "$96.00",
+        "actual": "$96.00"
+      },
+      {
+        "id": "CO-6",
+        "result": "pass",
+        "expected": "$40.00",
+        "actual": "$40.00"
+      }
+    ],
+    "actions": [
+      {
+        "kind": "pause_email",
+        "title": "Pause the Fri 9:15 am email",
+        "urgent": true
+      },
+      {
+        "kind": "change_shopify_end_time",
+        "title": "Change the Shopify end time to Sun 11:59 pm",
+        "urgent": false
+      }
+    ]
+  }
+]

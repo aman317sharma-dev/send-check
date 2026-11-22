@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check:ai": "tsx scripts/check-ai-keys.ts"
+    "check:ai": "tsx scripts/check-ai-keys.ts",
+    "validation-output": "tsx scripts/validation-output.ts"
   },
   "dependencies": {
     "next": "16.4.6",
